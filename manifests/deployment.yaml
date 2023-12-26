@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todoappui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todoappui
+  template:
+    metadata:
+      labels:
+        app: todoappui
+    spec:
+      containers:
+      - name: todoappui
+        image: devopsinsiders/todoapp-ui-new:v2
+        ports:
+        - containerPort: 80
+        env:
+        - name: CONNECTION_STRING
+          value: "Driver={ODBC Driver 17 for SQL Server};Server=tcp:sqlserver929.database.windows.net,1433;Database=ingress_db;Uid=admin01;Pwd={admin@123456};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30"
